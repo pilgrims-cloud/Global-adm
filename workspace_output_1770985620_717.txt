@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Pilgrim Bank - Admin Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="login-page" class="login-page">
+        <div class="login-container">
+            <div class="bank-logo">
+                <img src="assets/owner-photo.jpg" alt="Olawale Abdul-ganiyu Adeshina" class="owner-photo">
+                <h1>Global Pilgrim Bank</h1>
+                <p class="bank-code">Bank Code: Agb 999</p>
+                <p class="owner-name">Olawale Abdul-ganiyu Adeshina<br>Alias: "Adegan95"</p>
+            </div>

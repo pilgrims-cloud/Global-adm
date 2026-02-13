@@ -1,0 +1,3 @@
+127.0.0.1 - - [13/Feb/2026 13:26:32] "GET /?password=cbe90dc9-adc9-4d34-a76d-855e653bae9d HTTP/1.1" 200 -
+172.16.0.1 - - [13/Feb/2026 13:26:32] "GET /?hideControls=true&password=cbe90dc9-adc9-4d34-a76d-855e653bae9d HTTP/1.1" 200 -
+172.16.0.1 - - [13/Feb/2026 13:26:33] "GET /assets/owner-photo.jpg HTTP/1.1" 200 -

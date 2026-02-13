@@ -1,0 +1,20 @@
+                    balance: 5000,
+                    status: 'active',
+                    createdAt: new Date().toISOString(),
+                    transactions: []
+                };
+                
+                APP_STATE.customers.push(demoCustomer);
+                APP_STATE.balances.total = 5000;
+                APP_STATE.balances.usd = 5000;
+                
+                // Give some demo crypto balances
+                APP_STATE.balances.bitcoin = 0.5;
+                APP_STATE.balances.pilgrimCoins = 1000;
+                
+                saveData();
+            }
+        }
+    </script>
+</body>
+</html>

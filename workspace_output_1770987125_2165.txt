@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Pilgrim Bank - Admin Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="login-page" class="login-page">
+        <div class="login-container">
+            <div class="bank-logo">
+                <img src="assets/owner-photo.jpg" alt="Olawale Abdul-ganiyu Adeshina" class="owner-photo">
+                <h1>Global Pilgrim Bank</h1>
+                <p class="bank-code">Bank Code: Agb 999</p>
+                <p class="owner-name">Olawale Abdul-ganiyu Adeshina<br>Alias: "Adegan95"</p>
+            </div>
+            <form id="login-form" class="login-form">
+                <h2>Admin Login</h2>
+                <div class="form-group">
+                    <label>BVN Number</label>
+                    <input type="text" id="bvn-number" placeholder="Enter BVN" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="phone-number" placeholder="+2349030277275" required>
+                </div>
+                <div class="form-group">
+                    <label>Serial Number</label>
+                    <input type="text" id="serial-number" placeholder="Enter Serial Number" required>
+                </div>
+                <button type="submit" class="btn-primary">Secure Login</button>
+                <p id="login-error" class="error-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="admin-dashboard hidden">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/owner-photo.jpg" alt="Owner" class="sidebar-logo">
+                <h3>Global Pilgrim Bank</h3>
+                <p>Admin: Olawale A. Adeshina</p>
+            </div>
+            <ul class="nav-menu">
+                <li class="active"><a href="#" onclick="showSection('overview')"><i class="fas fa-tachometer-alt"></i> Overview</a></li>
+                <li><a href="#" onclick="showSection('customers')"><i class="fas fa-users"></i> Customers</a></li>
+                <li><a href="#" onclick="showSection('accounts')"><i class="fas fa-university"></i> Accounts</a></li>
+                <li><a href="#" onclick="showSection('transactions')"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+                <li><a href="#" onclick="showSection('approvals')"><i class="fas fa-check-circle"></i> Approvals</a></li>
+                <li><a href="#" onclick="showSection('crypto')"><i class="fas fa-coins"></i> Crypto & Mining</a></li>
+                <li><a href="#" onclick="showSection('forex')"><i class="fas fa-chart-line"></i> Forex Trading</a></li>
+                <li><a href="#" onclick="showSection('terminal')"><i class="fas fa-terminal"></i> Admin Terminal</a></li>
+                <li><a href="#" onclick="showSection('settings')"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="header-left">
+                    <h2>Admin Dashboard</h2>
+                </div>
+                <div class="header-right">
+                    <div class="network-status">
+                        <span class="status-dot online"></span>
+                        <span>Network: Secure (Owner Only)</span>
+                    </div>
+                    <div class="admin-info">
+                        <span id="admin-bvn-display"></span>
+                        <button onclick="logout()" class="btn-logout">Logout</button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <section id="overview" class="dashboard-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon primary">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Balance</h3>
+                            <p class="stat-value" id="total-balance">$0.00</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon success">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Profit Balance</h3>
+                            <p class="stat-value" id="profit-balance">$0.00</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon warning">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Customers</h3>
+                            <p class="stat-value" id="total-customers">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon danger">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Pilgrim Coins</h3>
+                            <p class="stat-value" id="pilgrim-coins">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3>Quick Actions</h3>
+                        <div class="action-buttons">
+                            <button onclick="showSection('customers')" class="btn-action">
+                                <i class="fas fa-user-plus"></i> Create Customer
+                            </button>
+                            <button onclick="showSection('approvals')" class="btn-action">
+                                <i class="fas fa-clipboard-check"></i> Pending Approvals
+                            </button>
+                            <button onclick="transferProfit()" class="btn-action">
+                                <i class="fas fa-exchange-alt"></i> Transfer Profit
+                            </button>
+                            <button onclick="showSection('crypto')" class="btn-action">
+                                <i class="fas fa-coins"></i> Start Mining
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Network Monitoring</h3>
+                        <div class="network-info">
+                            <p><strong>Active Sessions:</strong> <span id="active-sessions">1</span></p>
+                            <p><strong>Network Security:</strong> <span class="secure">SECURE</span></p>
+                            <p><strong>Last Activity:</strong> <span id="last-activity">Just now</span></p>
+                            <p><strong>Connection Type:</strong> Owner Network</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Customers Section -->
+            <section id="customers" class="dashboard-section hidden">
+                <div class="card">
+                    <h3>Create New Customer Account</h3>
+                    <form id="create-customer-form" class="form-grid">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="customer-name" placeholder="Customer Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="customer-phone" placeholder="+234..." required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="customer-email" placeholder="email@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>BVN Number</label>
+                            <input type="text" id="customer-bvn" placeholder="11-digit BVN" required>
+                        </div>
+                        <div class="form-group">
+                            <label>NIN Number</label>
+                            <input type="text" id="customer-nin" placeholder="11-digit NIN" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Initial Deposit ($)</label>
+                            <input type="number" id="customer-deposit" placeholder="0.00" min="0" step="0.01">
+                        </div>
+                        <button type="submit" class="btn-primary">Create Account</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h3>Customer List</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Account Number</th>
+                                <th>Name</th>
+                                <th>Balance</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customer-table-body">
+                            <!-- Customers will be loaded dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Accounts Section -->
+            <section id="accounts" class="dashboard-section hidden">
+                <div class="card">
+                    <h3>Account Management</h3>
+                    <div class="account-actions">
+                        <button onclick="approveAccounts()" class="btn-success">Approve Accounts</button>
+                        <button onclick="editAccount()" class="btn-warning">Edit Account</button>
+                        <button onclick="suspendAccount()" class="btn-danger">Suspend Account</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Multi-Currency Support</h3>
+                    <div class="currency-grid">
+                        <div class="currency-item">
+                            <span>USD ($) - Balance:</span>
+                            <span id="usd-balance">$0.00</span>
+                        </div>
+                        <div class="currency-item">
+                            <span>NGN (₦) - Balance:</span>
+                            <span id="ngn-balance">₦0.00</span>
+                        </div>
+                        <div class="currency-item">
+                            <span>EUR (€) - Balance:</span>
+                            <span id="eur-balance">€0.00</span>
+                        </div>
+                        <div class="currency-item">
+                            <span>GBP (£) - Balance:</span>
+                            <span id="gbp-balance">£0.00</span>
+                        </div>
+                        <div class="currency-item">
+                            <span>CHF (Fr) - Balance:</span>
+                            <span id="chf-balance">Fr0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transactions Section -->
+            <section id="transactions" class="dashboard-section hidden">
+                <div class="card">
+                    <h3>Transaction History</h3>
+                    <div class="filter-bar">
+                        <select id="transaction-filter">
+                            <option value="all">All Transactions</option>
+                            <option value="deposits">Deposits</option>
+                            <option value="withdrawals">Withdrawals</option>
+                            <option value="transfers">Transfers</option>
+                        </select>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Transaction ID</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>From/To</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transaction-table-body">
+                            <!-- Transactions will be loaded dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Approvals Section -->
+            <section id="approvals" class="dashboard-section hidden">
+                <div class="card">
+                    <h3>Pending Approvals</h3>
+                    <div id="approvals-list">
+                        <p class="no-data">No pending approvals</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Crypto & Mining Section -->
+            <section id="crypto" class="dashboard-section hidden">
+                <div class="card">
+                    <h3>Cryptocurrency Wallets</h3>
+                    <div class="crypto-grid">
+                        <div class="crypto-card">
+                            <h4>Pilgrim Coin (PLC)</h4>
+                            <p>Current Price: $0.50</p>
+                            <p>Balance: <span id="pilgrim-coin-balance">0</span> PLC</p>
+                            <button onclick="startMining()" class="btn-primary">Start Mining</button>
+                        </div>
+                        <div class="crypto-card">
+                            <h4>Global Pilgrim Share (GPS)</h4>
+                            <p>Current Price: $5.00</p>
+                            <p>Balance: <span id="share-balance">0</span> GPS</p>
+                            <button onclick="buyShares()" class="btn-success">Buy Shares</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Wallet Addresses</h3>
+                    <div class="wallet-list" id="wallet-list">
+                        <!-- Wallet addresses will be generated -->
+                    </div>
+                    <button onclick="generateWallet()" class="btn-primary">Generate New Wallet</button>
+                </div>
+
+                <div class="card">
+                    <h3>Mining Status</h3>
+                    <div class="mining-status">
+                        <p><strong>Status:</strong> <span id="mining-status">Stopped</span></p>
+                        <p><strong>Mined Today:</strong> <span id="mined-today">0</span> PLC</p>
+                        <p><strong>Total Mined:</strong> <span id="total-mined">0</span> PLC</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Forex Trading Section -->
+            <section id="forex" class="dashboard-section hidden">
+                <div class="card">
+                    <h3>Forex Trading Terminal</h3>
+                    <div class="trading-info">
+                        <p><strong>MetaTrader Account:</strong> adegan95@gmail.com</p>
+                        <p><strong>Server:</strong> Meta 4/5 Server</p>
+                        <p><strong>Trading Mode:</strong> <span id="trading-mode">Auto</span></p>
+                    </div>
+                    <div class="trading-controls">
+                        <button onclick="toggleAutoTrading()" id="auto-trade-btn" class="btn-success">Auto Trading: ON</button>
+                        <button onclick="startManualTrade()" class="btn-warning">Manual Trade</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Active Trades</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Pair</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>Entry Price</th>
+                                <th>Current Price</th>
+                                <th>Profit/Loss</th>
+                            </tr>
+                        </thead>
+                        <tbody id="active-trades-body">
+                            <!-- Trades will be loaded dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>Market Signals</h3>
+                    <div id="market-signals" class="signals-list">
+                        <!-- Signals will be loaded dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admin Terminal Section -->
+            <section id="terminal" class="dashboard-section hidden">
+                <div class="card terminal-card">
+                    <h3>Admin Terminal - Network Monitoring</h3>
+                    <div class="terminal-output" id="terminal-output">
+                        <div class="terminal-line"><span class="timestamp">[System]</span> Initializing secure terminal...</div>
+                        <div class="terminal-line"><span class="timestamp">[Network]</span> Monitoring all network connections...</div>
+                        <div class="terminal-line"><span class="timestamp">[Security]</span> Owner network verified: +2349030277275</div>
+                        <div class="terminal-line"><span class="timestamp">[Status]</span> System secure. No unauthorized access detected.</div>
+                    </div>
+                    <div class="terminal-commands">
+                        <input type="text" id="terminal-input" placeholder="Enter command..." onkeypress="handleTerminalCommand(event)">
+                        <button onclick="executeCommand()" class="btn-primary">Execute</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Active Sessions Monitor</h3>
+                    <div id="sessions-monitor">
+                        <!-- Sessions will be monitored -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="dashboard-section hidden">
+                <div class="card">
+                    <h3>Bank Settings</h3>
+                    <div class="settings-info">
+                        <h4>Licenses & Certifications</h4>
+                        <ul class="licenses-list">
+                            <li>✓ Commercial Bank License</li>
+                            <li>✓ Microfinance Bank (MFB) License</li>
+                            <li>✓ Payment Service Bank (PSB) License</li>
+                            <li>✓ Mobile Money Operator (MMO) License</li>
+                            <li>✓ Payment Solution Service Provider (PSSP) License</li>
+                            <li>✓ Switching & Processing License</li>
+                        </ul>
+                        <h4>NIBSS Integration</h4>
+                        <ul class="integration-list">
+                            <li>✓ Interbank Transfers (NIP)</li>
+                            <li>✓ BVN Verification System</li>
+                            <li>✓ Account Validation</li>
+                            <li>✓ Direct Debit</li>
+                            <li>✓ Bank Recognition Nationwide</li>
+                        </ul>
+                        <h4>Payment Switches</h4>
+                        <ul class="switches-list">
+                            <li>✓ NIBSS (Primary Switch)</li>
+                            <li>✓ Interswitch</li>
+                            <li>✓ Flutterwave</li>
+                            <li>✓ Paystack</li>
+                            <li>✓ Monnify</li>
+                            <li>✓ Unified Payments</li>
+                            <li>✓ VISA / MasterCard</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>System Security</h3>
+                    <div class="security-info">
+                        <p><strong>Network Restriction:</strong> <span class="status-enabled">ENABLED</span></p>
+                        <p><strong>Allowed Network:</strong> Owner Network Only</p>
+                        <p><strong>Admin Access:</strong> Olawale Abdul-ganiyu Only</p>
+                        <p><strong>Security Level:</strong> Maximum</p>
+                        <button onclick="testAlarm()" class="btn-danger">Test Alarm System</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

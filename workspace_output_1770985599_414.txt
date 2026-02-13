@@ -1,0 +1,15 @@
+127.0.0.1 - - [13/Feb/2026 12:27:03] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [13/Feb/2026 12:31:15] "GET /?password=cbe90dc9-adc9-4d34-a76d-855e653bae9d HTTP/1.1" 200 -
+172.16.0.1 - - [13/Feb/2026 12:31:16] "GET /?hideControls=true&password=cbe90dc9-adc9-4d34-a76d-855e653bae9d HTTP/1.1" 200 -
+172.16.0.1 - - [13/Feb/2026 12:31:16] "GET /css/style.css HTTP/1.1" 200 -
+172.16.0.1 - - [13/Feb/2026 12:31:17] "GET /assets/owner-photo.jpg HTTP/1.1" 200 -
+172.16.0.1 - - [13/Feb/2026 12:31:17] "GET /js/main.js HTTP/1.1" 200 -
+172.16.0.1 - - [13/Feb/2026 12:42:49] "GET /?hideControls=true&password=cbe90dc9-adc9-4d34-a76d-855e653bae9d HTTP/1.1" 200 -
+172.16.0.1 - - [13/Feb/2026 12:42:51] "GET /css/style.css HTTP/1.1" 200 -
+172.16.0.1 - - [13/Feb/2026 12:42:51] "GET /assets/owner-photo.jpg HTTP/1.1" 200 -
+172.16.0.1 - - [13/Feb/2026 12:42:51] "GET /js/main.js HTTP/1.1" 200 -
+127.0.0.1 - - [13/Feb/2026 13:07:27] "GET /?password=cbe90dc9-adc9-4d34-a76d-855e653bae9d HTTP/1.1" 200 -
+172.16.0.1 - - [13/Feb/2026 13:07:28] "GET /?hideControls=true&password=cbe90dc9-adc9-4d34-a76d-855e653bae9d HTTP/1.1" 200 -
+172.16.0.1 - - [13/Feb/2026 13:07:29] "GET /css/style.css HTTP/1.1" 200 -
+172.16.0.1 - - [13/Feb/2026 13:07:29] "GET /assets/owner-photo.jpg HTTP/1.1" 200 -
+172.16.0.1 - - [13/Feb/2026 13:07:29] "GET /js/main.js HTTP/1.1" 200 -
