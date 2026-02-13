@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Pilgrim Bank - Customer Portal</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="customer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Customer Login Page -->
+    <div id="customer-login-page" class="customer-login-page">
+        <div class="login-container">
+            <div class="bank-logo">
+                <h1>Global Pilgrim Bank</h1>
+                <p class="bank-code">Bank Code: Agb 999</p>
+            </div>
+            <form id="customer-login-form" class="login-form">
+                <h2>Customer Login</h2>
+                <div class="form-group">
+                    <label>Account Number</label>
+                    <input type="text" id="customer-account-number" placeholder="Enter 10-digit Account Number" required>
+                </div>
+                <div class="form-group">
+                    <label>Serial Number</label>
+                    <input type="text" id="customer-serial-number" placeholder="Enter Serial Number (e.g., AG9512345678)" required>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+                <p id="customer-login-error" class="error-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Customer Dashboard -->
+    <div id="customer-dashboard" class="customer-dashboard hidden">
+        <nav class="customer-nav">
+            <div class="nav-header">
+                <h2>Global Pilgrim Bank</h2>
+                <p id="customer-name-display">Welcome, Customer</p>
+            </div>
+            <ul class="customer-nav-menu">
+                <li class="active"><a href="#" onclick="showCustomerSection('overview')"><i class="fas fa-tachometer-alt"></i> Overview</a></li>
+                <li><a href="#" onclick="showCustomerSection('transfer')"><i class="fas fa-exchange-alt"></i> Transfer</a></li>
+                <li><a href="#" onclick="showCustomerSection('transactions')"><i class="fas fa-list"></i> Transactions</a></li>
+                <li><a href="#" onclick="showCustomerSection('cards')"><i class="fas fa-credit-card"></i> Virtual Cards</a></li>
+                <li><a href="#" onclick="showCustomerSection('sync')"><i class="fas fa-sync"></i> Daily Sync</a></li>
+                <li><a href="#" onclick="customerLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+
+        <main class="customer-main-content">
+            <header class="customer-header">
+                <div class="account-info">
+                    <p><strong>Account Number:</strong> <span id="display-account-number"></span></p>
+                    <p><strong>Serial Number:</strong> <span id="display-serial-number"></span></p>
+                    <p><strong>Status:</strong> <span id="account-status" class="status-active"></span></p>
+                </div>
+                <div class="activation-status">
+                    <span id="activation-badge" class="badge-inactive">Account Not Activated</span>
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <section id="customer-overview" class="customer-section active">
+                <div class="balance-card">
+                    <div class="balance-info">
+                        <h3>Account Balance</h3>
+                        <p class="balance-amount" id="customer-balance">$0.00</p>
+                        <p class="account-status-text">Available for withdrawal and transfer</p>
+                    </div>
+                    <div class="balance-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                </div>
+
+                <div class="customer-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-arrow-down text-success"></i>
+                        <div>
+                            <h4>Total Deposits</h4>
+                            <p id="total-deposits">$0.00</p>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-arrow-up text-danger"></i>
+                        <div>
+                            <h4>Total Withdrawals</h4>
+                            <p id="total-withdrawals">$0.00</p>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-exchange-alt text-primary"></i>
+                        <div>
+                            <h4>Total Transfers</h4>
+                            <p id="total-transfers">$0.00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activation-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div>
+                        <h4>Account Activation Required</h4>
+                        <p>You must deposit funds from another bank or use ATM card to activate your account before you can send money to other banks.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transfer Section -->
+            <section id="customer-transfer" class="customer-section hidden">
+                <div class="card">
+                    <h3>Money Transfer</h3>
+                    <div class="transfer-tabs">
+                        <button class="tab-btn active" onclick="showTransferTab('local')">Local Transfer</button>
+                        <button class="tab-btn" onclick="showTransferTab('international')">International Transfer</button>
+                    </div>
+
+                    <!-- Local Transfer Form -->
+                    <div id="local-transfer" class="transfer-form active">
+                        <form id="local-transfer-form">
+                            <div class="form-group">
+                                <label>Bank</label>
+                                <select id="transfer-bank" required>
+                                    <option value="">Select Bank</option>
+                                    <option value="access">Access Bank</option>
+                                    <option value="gtbank">GTBank</option>
+                                    <option value="first">First Bank</option>
+                                    <option value="zenith">Zenith Bank</option>
+                                    <option value="uba">UBA</option>
+                                    <option value="kuda">Kuda Bank</option>
+                                    <option value="opay">OPay</option>
+                                    <option value="palmpay">PalmPay</option>
+                                    <option value="moniepoint">Moniepoint</option>
+                                    <option value="pilgrim">Global Pilgrim Bank</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Account Number</label>
+                                <input type="text" id="transfer-account-number" placeholder="Enter recipient account number" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Amount ($)</label>
+                                <input type="number" id="transfer-amount" placeholder="Enter amount" min="0.01" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Remark</label>
+                                <input type="text" id="transfer-remark" placeholder="Enter remark (optional)">
+                            </div>
+                            <button type="submit" class="btn-primary" id="local-transfer-btn">Transfer</button>
+                        </form>
+                    </div>
+
+                    <!-- International Transfer Form -->
+                    <div id="international-transfer" class="transfer-form hidden">
+                        <form id="international-transfer-form">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <select id="international-country" required>
+                                    <option value="">Select Country</option>
+                                    <option value="usa">United States</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <option value="canada">Canada</option>
+                                    <option value="australia">Australia</option>
+                                    <option value="germany">Germany</option>
+                                    <option value="france">France</option>
+                                    <option value="switzerland">Switzerland</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>SWIFT/BIC Code</label>
+                                <input type="text" id="swift-code" placeholder="Enter SWIFT code" required>
+                            </div>
+                            <div class="form-group">
+                                <label>IBAN/Account Number</label>
+                                <input type="text" id="iban-number" placeholder="Enter IBAN or account number" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Recipient Name</label>
+                                <input type="text" id="recipient-name" placeholder="Enter recipient name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Amount ($)</label>
+                                <input type="number" id="international-amount" placeholder="Enter amount" min="0.01" step="0.01" required>
+                            </div>
+                            <button type="submit" class="btn-primary" id="international-transfer-btn">Send International</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transactions Section -->
+            <section id="customer-transactions" class="customer-section hidden">
+                <div class="card">
+                    <h3>Transaction History</h3>
+                    <div id="customer-transactions-list">
+                        <p class="no-data">No transactions yet</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Virtual Cards Section -->
+            <section id="customer-cards" class="customer-section hidden">
+                <div class="card">
+                    <h3>Virtual ATM Cards</h3>
+                    <div id="virtual-cards-list">
+                        <p class="no-data">No virtual cards yet. Activate your account to request a card.</p>
+                    </div>
+                    <button onclick="requestVirtualCard()" class="btn-primary" id="request-card-btn" disabled>Request Virtual Card</button>
+                </div>
+            </section>
+
+            <!-- Daily Sync Section -->
+            <section id="customer-sync" class="customer-section hidden">
+                <div class="card sync-card">
+                    <div class="sync-header">
+                        <h3>Daily Synchronization</h3>
+                        <p class="sync-subtitle">Click once daily to sync your account activities</p>
+                    </div>
+                    <div class="sync-status">
+                        <p><strong>Last Sync:</strong> <span id="last-sync-time">Never</span></p>
+                        <p><strong>Today's Earnings:</strong> <span id="sync-earnings">$0.00</span></p>
+                    </div>
+                    <button onclick="dailySync()" class="btn-primary sync-btn" id="sync-btn">
+                        <i class="fas fa-sync"></i> Synchronize Now
+                    </button>
+                    <p class="sync-info">Synchronization credits $5.00 to your main account</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="customer.js"></script>
+</body>
+</html>

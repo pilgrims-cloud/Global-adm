@@ -1,0 +1,752 @@
+/* Forex Trading Platform Styles */
+
+.forex-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+}
+
+/* Header */
+.forex-header {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.forex-header h1 {
+    font-size: 24px;
+    margin: 0 0 5px 0;
+    color: white;
+}
+
+.forex-header p {
+    margin: 0;
+    color: #aaa;
+    font-size: 14px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.account-info {
+    display: flex;
+    gap: 10px;
+    color: #aaa;
+    font-size: 14px;
+}
+
+.btn-secondary {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Forex Dashboard */
+.forex-dashboard {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Sidebar */
+.forex-sidebar {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 15px;
+    height: calc(100vh - 100px);
+    position: sticky;
+    top: 20px;
+    overflow-y: auto;
+}
+
+.balance-panel {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.balance-panel h3 {
+    font-size: 14px;
+    margin: 0 0 10px 0;
+    opacity: 0.9;
+}
+
+.main-balance {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+}
+
+.balance-details p {
+    margin: 8px 0;
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.profit-panel {
+    background: rgba(39, 174, 96, 0.2);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(39, 174, 96, 0.3);
+}
+
+.profit-panel h3 {
+    font-size: 14px;
+    margin: 0 0 10px 0;
+    color: #27ae60;
+}
+
+.profit-amount {
+    font-size: 28px;
+    font-weight: bold;
+    color: #27ae60;
+    margin: 0 0 10px 0;
+}
+
+.profit-panel p {
+    margin: 0;
+    font-size: 12px;
+    color: #aaa;
+}
+
+/* Forex Navigation */
+.forex-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.forex-nav li {
+    margin-bottom: 5px;
+}
+
+.forex-nav a {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: #aaa;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.forex-nav a:hover,
+.forex-nav a.active {
+    background: rgba(102, 126, 234, 0.2);
+    color: white;
+}
+
+.forex-nav i {
+    margin-right: 10px;
+    width: 20px;
+}
+
+/* Trading Mode */
+.trading-mode {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.trading-mode h3 {
+    font-size: 14px;
+    margin: 0 0 15px 0;
+    color: #aaa;
+}
+
+.mode-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.mode-btn {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 13px;
+}
+
+.mode-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.mode-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: transparent;
+}
+
+.mode-btn i {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+/* Main Content */
+.forex-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Forex Sections */
+.forex-section {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.forex-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Market Overview */
+.market-overview {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.market-overview h2 {
+    margin: 0 0 20px 0;
+    color: white;
+}
+
+.market-pairs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.pair-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s;
+}
+
+.pair-card:hover {
+    transform: translateY(-5px);
+}
+
+.pair-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.pair-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+
+.pair-change {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+.pair-change.positive {
+    background: rgba(39, 174, 96, 0.2);
+    color: #27ae60;
+}
+
+.pair-change.negative {
+    background: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+}
+
+.pair-price {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.pair-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #aaa;
+}
+
+/* Trades Table */
+.active-trades-section {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.active-trades-section h2 {
+    margin: 0 0 20px 0;
+    color: white;
+}
+
+.trades-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.trades-table th {
+    background: rgba(102, 126, 234, 0.2);
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.trades-table td {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ccc;
+}
+
+.trades-table tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.profit-positive {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.profit-negative {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* Trading Panel */
+.trading-panel {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.trading-panel h2 {
+    margin: 0 0 20px 0;
+    color: white;
+}
+
+.trade-form {
+    display: grid;
+    gap: 15px;
+}
+
+.trade-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.trade-form label {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.trade-form select,
+.trade-form input {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+}
+
+.trade-form select:focus,
+.trade-form input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.trade-type-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.btn-buy,
+.btn-sell {
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 16px;
+}
+
+.btn-buy {
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    color: white;
+}
+
+.btn-sell {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+}
+
+.btn-buy:hover,
+.btn-sell:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-execute {
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 16px;
+}
+
+.btn-execute:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Chart Section */
+.chart-section {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.chart-section h2 {
+    margin: 0 0 20px 0;
+    color: white;
+}
+
+.price-chart {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Signals */
+.signals-container {
+    display: grid;
+    gap: 15px;
+}
+
+.signal-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+}
+
+.signal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.signal-pair {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.signal-type {
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.signal-type.buy {
+    background: rgba(39, 174, 96, 0.2);
+    color: #27ae60;
+}
+
+.signal-type.sell {
+    background: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+}
+
+.signal-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.signal-details p {
+    margin: 0;
+    color: #aaa;
+    font-size: 14px;
+}
+
+.signal-details strong {
+    color: white;
+}
+
+/* CSCS Card */
+.cscs-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.cscs-card h2 {
+    margin: 0 0 25px 0;
+    color: white;
+}
+
+.cscs-info {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row .label {
+    color: #aaa;
+}
+
+.info-row .value {
+    color: white;
+    font-weight: bold;
+}
+
+.status-active {
+    color: #27ae60;
+}
+
+.cscs-balance {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.cscs-balance h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+}
+
+.cscs-balance .balance-amount {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+.cscs-balance p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 14px;
+}
+
+.cscs-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.btn-primary {
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Pilgrim Coin Card */
+.pilgrim-coin-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.pilgrim-coin-card h2 {
+    margin: 0 0 25px 0;
+    color: white;
+}
+
+.coin-info {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.coin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.coin-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.coin-price {
+    font-size: 32px;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.coin-stats p {
+    margin: 8px 0;
+    color: #aaa;
+}
+
+.coin-trading {
+    margin-bottom: 25px;
+}
+
+.trade-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.btn-buy-coin,
+.btn-sell-coin {
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-buy-coin {
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    color: white;
+}
+
+.btn-sell-coin {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+}
+
+.btn-buy-coin:hover,
+.btn-sell-coin:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.coin-market-data {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.coin-market-data h3 {
+    margin: 0 0 15px 0;
+    color: white;
+}
+
+.coin-market-data p {
+    margin: 8px 0;
+    color: #aaa;
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .forex-dashboard {
+        grid-template-columns: 1fr;
+    }
+    
+    .forex-sidebar {
+        height: auto;
+        position: static;
+    }
+    
+    .market-pairs {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .forex-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .trades-table {
+        font-size: 12px;
+    }
+    
+    .trades-table th,
+    .trades-table td {
+        padding: 10px;
+    }
+    
+    .trade-type-buttons {
+        grid-template-columns: 1fr;
+    }
+}
