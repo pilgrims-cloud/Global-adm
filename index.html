@@ -1,0 +1,2287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Pilgrim Bank - Admin Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="login-page" class="login-page">
+        <div class="login-container">
+            <div class="bank-logo">
+                <img src="assets/owner-photo.jpg" alt="Olawale Abdul-ganiyu Adeshina" class="owner-photo">
+                <h1>Global Pilgrim Bank</h1>
+                <p class="bank-code">Bank Code: Agb 999</p>
+                <p class="owner-name">Olawale Abdul-ganiyu Adeshina<br>Alias: "Adegan95"</p>
+            </div>
+            <form id="login-form" class="login-form">
+                <h2>Admin Login</h2>
+                <div class="form-group">
+                    <label>BVN Number</label>
+                    <input type="text" id="bvn-number" placeholder="Enter BVN" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="phone-number" placeholder="+2349030277275" required>
+                </div>
+                <div class="form-group">
+                    <label>Serial Number</label>
+                    <input type="text" id="serial-number" placeholder="Enter Serial Number" required>
+                </div>
+                <button type="submit" class="btn-primary">Secure Login</button>
+                <p id="login-error" class="error-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="admin-dashboard hidden">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/owner-photo.jpg" alt="Owner" class="sidebar-logo">
+                <h3>Global Pilgrim Bank</h3>
+                <p>Admin: Olawale A. Adeshina</p>
+            </div>
+            <ul class="nav-menu">
+                <li class="active"><a href="#" onclick="showSection('overview')"><i class="fas fa-tachometer-alt"></i> Overview</a></li>
+                <li><a href="#" onclick="showSection('customers')"><i class="fas fa-users"></i> Customers</a></li>
+                <li><a href="#" onclick="showSection('accounts')"><i class="fas fa-university"></i> Accounts</a></li>
+                <li><a href="#" onclick="showSection('transactions')"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+                <li><a href="#" onclick="showSection('approvals')"><i class="fas fa-check-circle"></i> Approvals</a></li>
+                <li><a href="#" onclick="showSection('crypto')"><i class="fas fa-coins"></i> Crypto & Mining</a></li>
+                <li><a href="#" onclick="showSection('forex')"><i class="fas fa-chart-line"></i> Forex Trading</a></li>
+                <li><a href="#" onclick="showSection('terminal')"><i class="fas fa-terminal"></i> Admin Terminal</a></li>
+                <li><a href="#" onclick="showSection('settings')"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="header-left">
+                    <h2>Admin Dashboard</h2>
+                    <p id="admin-bvn-display">BVN: Not logged in</p>
+                </div>
+                <div class="header-right">
+                    <div class="network-status">
+                        <span class="status-dot online"></span>
+                        <span>Owner Network</span>
+                    </div>
+                    <div class="admin-info">
+                        <i class="fas fa-user-shield"></i>
+                        <span>Adegan95</span>
+                    </div>
+                    <button class="btn-logout" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <section id="overview" class="dashboard-section active">
+                <h2><i class="fas fa-tachometer-alt"></i> Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon primary">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Customers</h3>
+                            <p class="stat-value" id="total-customers">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon success">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Balance</h3>
+                            <p class="stat-value" id="total-balance">$0.00</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon warning">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Active Trades</h3>
+                            <p class="stat-value" id="active-trades">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon danger">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Daily Profit</h3>
+                            <p class="stat-value" id="daily-profit">$0.00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3><i class="fas fa-shield-alt"></i> Network Security</h3>
+                        <div class="network-info">
+                            <p><strong>Status:</strong> <span class="secure">SECURE</span></p>
+                            <p><strong>Owner:</strong> Olawale Abdul-ganiyu Adeshina</p>
+                            <p><strong>Phone:</strong> +2349030277275</p>
+                            <p><strong>Email:</strong> adegan95@gmail.com</p>
+                            <p><strong>Network:</strong> Owner Network Only</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                        <div class="action-buttons">
+                            <button class="btn-action" onclick="showSection('customers')">
+                                <i class="fas fa-user-plus"></i> Add Customer
+                            </button>
+                            <button class="btn-action" onclick="showSection('transactions')">
+                                <i class="fas fa-exchange-alt"></i> Send Money
+                            </button>
+                            <button class="btn-action" onclick="showSection('crypto')">
+                                <i class="fas fa-coins"></i> Crypto Trade
+                            </button>
+                            <button class="btn-action" onclick="showSection('forex')">
+                                <i class="fas fa-chart-line"></i> Forex Trade
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Customers Section -->
+            <section id="customers" class="dashboard-section">
+                <h2><i class="fas fa-users"></i> Customer Management</h2>
+                <div class="card">
+                    <h3>Create New Customer</h3>
+                    <form id="create-customer-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="customer-name" placeholder="Enter full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="customer-email" placeholder="Enter email" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" id="customer-phone" placeholder="+234..." required>
+                            </div>
+                            <div class="form-group">
+                                <label>BVN Number</label>
+                                <input type="text" id="customer-bvn" placeholder="11-digit BVN" required>
+                            </div>
+                            <div class="form-group">
+                                <label>NIN Number</label>
+                                <input type="text" id="customer-nin" placeholder="11-digit NIN" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Initial Balance (USD)</label>
+                                <input type="number" id="initial-balance" placeholder="0.00" min="0" step="0.01">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary">Create Customer</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h3>All Customers</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Account Number</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Balance</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customers-table-body">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Accounts Section -->
+            <section id="accounts" class="dashboard-section">
+                <h2><i class="fas fa-university"></i> Accounts & Balances</h2>
+                <div class="currency-grid">
+                    <div class="currency-item">
+                        <span>USD</span>
+                        <span id="balance-usd">$0.00</span>
+                    </div>
+                    <div class="currency-item">
+                        <span>NGN</span>
+                        <span id="balance-ngn">₦0.00</span>
+                    </div>
+                    <div class="currency-item">
+                        <span>EUR</span>
+                        <span id="balance-eur">€0.00</span>
+                    </div>
+                    <div class="currency-item">
+                        <span>GBP</span>
+                        <span id="balance-gbp">£0.00</span>
+                    </div>
+                    <div class="currency-item">
+                        <span>CHF</span>
+                        <span id="balance-chf">Fr 0.00</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transactions Section -->
+            <section id="transactions" class="dashboard-section">
+                <h2><i class="fas fa-exchange-alt"></i> Transactions</h2>
+                
+                <div class="transaction-forms">
+                    <div class="transaction-card">
+                        <h4><i class="fas fa-paper-plane"></i> Send Money</h4>
+                        <form id="send-money-form">
+                            <label>From Account Number</label>
+                            <input type="text" id="send-from-account" placeholder="10-digit account" required>
+                            <label>To Account Number</label>
+                            <input type="text" id="send-to-account" placeholder="10-digit account" required>
+                            <label>Amount (USD)</label>
+                            <input type="number" id="send-amount" placeholder="0.00" min="0.01" step="0.01" required>
+                            <label>Remark</label>
+                            <input type="text" id="send-remark" placeholder="Optional remark">
+                            <button type="submit">Send Money</button>
+                        </form>
+                    </div>
+                    
+                    <div class="transaction-card">
+                        <h4><i class="fas fa-plus-circle"></i> Credit Account</h4>
+                        <form id="credit-form">
+                            <label>Account Number</label>
+                            <input type="text" id="credit-account-number" placeholder="10-digit account" required>
+                            <label>Amount (USD)</label>
+                            <input type="number" id="credit-amount" placeholder="0.00" min="0.01" step="0.01" required>
+                            <label>Remark</label>
+                            <input type="text" id="credit-remark" placeholder="Optional remark">
+                            <button type="submit">Credit Account</button>
+                        </form>
+                    </div>
+                    
+                    <div class="transaction-card">
+                        <h4><i class="fas fa-minus-circle"></i> Debit Account</h4>
+                        <form id="debit-form">
+                            <label>Account Number</label>
+                            <input type="text" id="debit-account-number" placeholder="10-digit account" required>
+                            <label>Amount (USD)</label>
+                            <input type="number" id="debit-amount" placeholder="0.00" min="0.01" step="0.01" required>
+                            <label>Remark</label>
+                            <input type="text" id="debit-remark" placeholder="Optional remark">
+                            <button type="submit">Debit Account</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <h3>Recent Transactions</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactions-table-body">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Approvals Section -->
+            <section id="approvals" class="dashboard-section">
+                <h2><i class="fas fa-check-circle"></i> Pending Approvals</h2>
+                <div class="card">
+                    <h3>Awaiting Approval</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Request ID</th>
+                                <th>Type</th>
+                                <th>Customer</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="approvals-table-body">
+                            <tr>
+                                <td colspan="6" style="text-align: center;">No pending approvals</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Crypto Section -->
+            <section id="crypto" class="dashboard-section">
+                <h2><i class="fas fa-coins"></i> Crypto & Mining</h2>
+                
+                <div class="crypto-grid">
+                    <div class="crypto-card">
+                        <h4><i class="fab fa-bitcoin"></i> Bitcoin Wallet</h4>
+                        <p>Balance: <span id="bitcoin-balance">0.00000000 BTC</span></p>
+                        <p>Price: $67,500.00</p>
+                        <p>Value: <span id="bitcoin-value">$0.00</span></p>
+                    </div>
+                    <div class="crypto-card">
+                        <h4><i class="fas fa-coins"></i> Pilgrim Coin</h4>
+                        <p>Balance: <span id="pilgrim-coins">0.00 PLC</span></p>
+                        <p>Price: $0.50</p>
+                        <p>Value: <span id="pilgrim-value">$0.00</span></p>
+                    </div>
+                    <div class="crypto-card">
+                        <h4><i class="fas fa-chart-pie"></i> Global Pilgrim Shares</h4>
+                        <p>Shares: <span id="shares">0.00 GPS</span></p>
+                        <p>Price: $5.00</p>
+                        <p>Value: <span id="shares-value">$0.00</span></p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 30px; margin-bottom: 20px;">
+                    <i class="fas fa-exchange-alt"></i> Crypto Trading
+                </h3>
+                
+                <div class="crypto-trading-grid">
+                    <div class="crypto-trade-card">
+                        <h4><i class="fab fa-bitcoin"></i> Bitcoin to Pilgrim Coin</h4>
+                        <label>Amount (BTC)</label>
+                        <input type="number" id="btc-to-plc-amount" placeholder="0.00" min="0.00000001" step="0.00000001">
+                        <div class="trade-info" id="btc-to-plc-result">
+                            <p>Enter BTC amount to convert</p>
+                            <p>Bitcoin Price: <span class="highlight">$67,500</span></p>
+                            <p>Pilgrim Coin Price: <span class="highlight">$0.50</span></p>
+                        </div>
+                        <form id="btc-to-plc-form">
+                            <button type="submit">Convert BTC → PLC</button>
+                        </form>
+                    </div>
+                    
+                    <div class="crypto-trade-card">
+                        <h4><i class="fas fa-coins"></i> Pilgrim Coin to Bitcoin</h4>
+                        <label>Amount (PLC)</label>
+                        <input type="number" id="plc-to-btc-amount" placeholder="0.00" min="0.01" step="0.01">
+                        <div class="trade-info" id="plc-to-btc-result">
+                            <p>Enter PLC amount to convert</p>
+                            <p>Pilgrim Coin Price: <span class="highlight">$0.50</span></p>
+                            <p>Bitcoin Price: <span class="highlight">$67,500</span></p>
+                        </div>
+                        <form id="plc-to-btc-form">
+                            <button type="submit">Convert PLC → BTC</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 30px;">
+                    <h3><i class="fas fa-hammer"></i> Wallet Mining</h3>
+                    <p>Mine 50 PLC per minute ($25 value)</p>
+                    <p>Today's Mined: <span id="mined-today">0</span> PLC</p>
+                    <p>Total Mined: <span id="total-mined">0</span> PLC</p>
+                    <div class="trading-controls">
+                        <button class="btn-success" onclick="startMining()">Start Mining</button>
+                        <button class="btn-danger" onclick="stopMining()">Stop Mining</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Forex Section -->
+            <section id="forex" class="dashboard-section">
+                <h2><i class="fas fa-chart-line"></i> Forex Trading</h2>
+                
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3><i class="fas fa-robot"></i> Auto-Trading</h3>
+                        <p>Status: <span class="status-badge active">Active (6-second intervals)</span></p>
+                        <p>Lot Size Range: 0.01 - 10,000</p>
+                        <p>Active Trades: <span id="active-trades-count">0</span></p>
+                        <div class="trading-info">
+                            <p>Profits are automatically credited to Pilgrim Bank</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3><i class="fas fa-chart-bar"></i> Market Overview</h3>
+                        <p><strong>Major Pairs:</strong> EUR/USD, GBP/USD, USD/JPY</p>
+                        <p><strong>Cross Pairs:</strong> EUR/GBP, EUR/JPY, GBP/JPY</p>
+                        <p><strong>Commodities:</strong> XAU/USD, XAG/USD</p>
+                        <p><strong>Crypto:</strong> BTC/USD, ETH/USD</p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <h3><i class="fas fa-list"></i> Active Trades</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Pair</th>
+                                <th>Action</th>
+                                <th>Lots</th>
+                                <th>Entry Price</th>
+                                <th>Current Price</th>
+                                <th>Profit</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="active-trades-body">
+                            <tr>
+                                <td colspan="7" style="text-align: center;">No active trades</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Terminal Section -->
+            <section id="terminal" class="dashboard-section">
+                <h2><i class="fas fa-terminal"></i> Admin Terminal</h2>
+                <div class="card terminal-card">
+                    <h3>Command Terminal</h3>
+                    <div class="terminal-output" id="terminal-output">
+                    </div>
+                    <div class="terminal-commands">
+                        <input type="text" id="terminal-input" placeholder="Enter command (help for available commands)...">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="dashboard-section">
+                <h2><i class="fas fa-cog"></i> Settings & Compliance</h2>
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3><i class="fas fa-shield-alt"></i> Security Settings</h3>
+                        <p><strong>Login Type:</strong> Multi-factor (BVN + Phone + Serial)</p>
+                        <p><strong>Network Restriction:</strong> Owner Network Only</p>
+                        <p><strong>Session Timeout:</strong> 30 minutes</p>
+                        <p><strong>IP Whitelist:</strong> Active</p>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-certificate"></i> Licenses & Compliance</h3>
+                        <p><strong>CBN License:</strong> Pending</p>
+                        <p><strong>NIBSS Member:</strong> Pending</p>
+                        <p><strong>SWIFT Code:</strong> AGGBNGLA</p>
+                        <p><strong>Bank Code:</strong> Agb 999</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Embedded CSS -->
+    <style>
+        /* Global Pilgrim Bank - Main CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Login Page Styles */
+        .login-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .bank-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .owner-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #667eea;
+            margin-bottom: 20px;
+        }
+
+        .bank-logo h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .bank-code {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .owner-name {
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .login-form h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .error-message {
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            display: none;
+        }
+
+        /* Admin Dashboard Styles */
+        .admin-dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 20px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #667eea;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-header h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-header p {
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-bottom: 5px;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: #aaa;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background: rgba(102, 126, 234, 0.2);
+            color: white;
+        }
+
+        .nav-menu i {
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            background: #f5f6fa;
+            padding: 20px;
+        }
+
+        .top-bar {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-left h2 {
+            color: #333;
+            font-size: 24px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .network-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: #e8f5e9;
+            border-radius: 20px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.online {
+            background: #27ae60;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-logout {
+            padding: 10px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-logout:hover {
+            background: #c0392b;
+        }
+
+        /* Dashboard Sections */
+        .dashboard-section {
+            display: none;
+        }
+
+        .dashboard-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dashboard-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .stat-icon.primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .stat-icon.success {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+        }
+
+        .stat-icon.warning {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        }
+
+        .stat-icon.danger {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+
+        .stat-info h3 {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            color: #333;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .btn-action {
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-action i {
+            font-size: 18px;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Network Info */
+        .network-info p {
+            margin-bottom: 10px;
+            color: #555;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .secure {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        /* Forms */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            color: #333;
+        }
+
+        .data-table tr:hover {
+            background: #f5f6fa;
+        }
+
+        /* Currency Grid */
+        .currency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .currency-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .currency-item span:first-child {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .currency-item span:last-child {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Crypto Grid */
+        .crypto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .crypto-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+        }
+
+        .crypto-card h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .crypto-card p {
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .crypto-card button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Wallet List */
+        .wallet-list {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .wallet-item {
+            background: #f5f6fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .wallet-item p {
+            margin-bottom: 5px;
+            color: #555;
+            word-break: break-all;
+        }
+
+        /* Trading Info */
+        .trading-info p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .trading-controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        /* Terminal */
+        .terminal-card {
+            background: #1a1a2e;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+        }
+
+        .terminal-card h3 {
+            color: white;
+        }
+
+        .terminal-output {
+            background: #0a0a1a;
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 8px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .terminal-line {
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+
+        .timestamp {
+            color: #667eea;
+            margin-right: 10px;
+        }
+
+        .terminal-commands {
+            display: flex;
+            gap: 10px;
+        }
+
+        #terminal-input {
+            flex: 1;
+            padding: 10px;
+            background: #0a0a1a;
+            color: #00ff00;
+            border: 1px solid #333;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+
+        #terminal-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-badge.active {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-badge.suspended {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-badge.completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-badge.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        /* Transaction Forms */
+        .transaction-forms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .transaction-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .transaction-card h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .transaction-card input,
+        .transaction-card select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .transaction-card button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .transaction-card button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Crypto Trading */
+        .crypto-trading-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .crypto-trade-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+        }
+
+        .crypto-trade-card h4 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .crypto-trade-card label {
+            display: block;
+            margin-bottom: 8px;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .crypto-trade-card input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .crypto-trade-card input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .crypto-trade-card button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .crypto-trade-card button:hover {
+            transform: translateY(-2px);
+        }
+
+        .trade-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .trade-info p {
+            margin-bottom: 5px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .trade-info .highlight {
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .currency-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .crypto-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .transaction-forms {
+                grid-template-columns: 1fr;
+            }
+            
+            .crypto-trading-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- Embedded JavaScript -->
+    <script>
+        // Global Pilgrim Bank - Main JavaScript
+        // Owner: Olawale Abdul-ganiyu Adeshina (Adegan95)
+        // Bank Code: Agb 999
+
+        // Global State
+        const APP_STATE = {
+            isAdmin: false,
+            adminInfo: {
+                bvn: "12345678901", // Default admin BVN
+                phone: "+2349030277275", // Owner's phone
+                serial: "AG9512345678", // Admin serial number
+                name: "Olawale Abdul-ganiyu Adeshina",
+                alias: "Adegan95"
+            },
+            customers: [],
+            transactions: [],
+            pendingApprovals: [],
+            wallets: [],
+            miningActive: false,
+            autoTrading: true,
+            balances: {
+                total: 0,
+                profit: 0,
+                usd: 0,
+                ngn: 0,
+                eur: 0,
+                gbp: 0,
+                chf: 0,
+                pilgrimCoins: 0,
+                shares: 0,
+                bitcoin: 0
+            },
+            minedToday: 0,
+            totalMined: 0,
+            activeTrades: [],
+            networkSessions: []
+        };
+
+        // Crypto Prices
+        const CRYPTO_PRICES = {
+            bitcoin: 67500, // USD
+            pilgrimCoin: 0.50, // USD
+            share: 5.00 // USD
+        };
+
+        // DOM Elements
+        const loginPage = document.getElementById('login-page');
+        const adminDashboard = document.getElementById('admin-dashboard');
+        const loginForm = document.getElementById('login-form');
+        const loginError = document.getElementById('login-error');
+
+        // Initialize Application
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Global Pilgrim Bank - Initializing...');
+            checkNetworkRestriction();
+            loadSavedData();
+            setupEventListeners();
+            updateDashboard();
+            startNetworkMonitoring();
+            startAutoTrading();
+            console.log('Global Pilgrim Bank - Initialized successfully');
+        });
+
+        // Network Restriction Check
+        function checkNetworkRestriction() {
+            // Simulate network check - only owner's network allowed
+            const currentNetwork = "+2349030277275"; // Owner's network
+            
+            if (currentNetwork !== APP_STATE.adminInfo.phone) {
+                showError("Unauthorized network detected. Access denied.");
+                return false;
+            }
+            
+            return true;
+        }
+
+        // Event Listeners
+        function setupEventListeners() {
+            // Login form submission
+            if (loginForm) {
+                loginForm.addEventListener('submit', handleLogin);
+                console.log('Login form event listener attached');
+            }
+            
+            // Customer creation form
+            const customerForm = document.getElementById('create-customer-form');
+            if (customerForm) {
+                customerForm.addEventListener('submit', createCustomer);
+            }
+
+            // Send Money form
+            const sendMoneyForm = document.getElementById('send-money-form');
+            if (sendMoneyForm) {
+                sendMoneyForm.addEventListener('submit', handleSendMoney);
+            }
+
+            // Credit form
+            const creditForm = document.getElementById('credit-form');
+            if (creditForm) {
+                creditForm.addEventListener('submit', handleCredit);
+            }
+
+            // Debit form
+            const debitForm = document.getElementById('debit-form');
+            if (debitForm) {
+                debitForm.addEventListener('submit', handleDebit);
+            }
+
+            // BTC to PLC form
+            const btcToPlcForm = document.getElementById('btc-to-plc-form');
+            if (btcToPlcForm) {
+                btcToPlcForm.addEventListener('submit', handleBtcToPlc);
+            }
+
+            // PLC to BTC form
+            const plcToBtcForm = document.getElementById('plc-to-btc-form');
+            if (plcToBtcForm) {
+                plcToBtcForm.addEventListener('submit', handlePlcToBtc);
+            }
+
+            // Terminal input
+            const terminalInput = document.getElementById('terminal-input');
+            if (terminalInput) {
+                terminalInput.addEventListener('keypress', handleTerminalCommand);
+            }
+        }
+
+        // Login Handler
+        function handleLogin(e) {
+            e.preventDefault();
+            
+            console.log('Login attempt initiated');
+            
+            const bvn = document.getElementById('bvn-number').value;
+            const phone = document.getElementById('phone-number').value;
+            const serial = document.getElementById('serial-number').value;
+            
+            console.log('Login credentials:', { bvn, phone, serial });
+            console.log('Expected credentials:', APP_STATE.adminInfo);
+            
+            // Validate admin credentials
+            if (bvn !== APP_STATE.adminInfo.bvn || 
+                phone !== APP_STATE.adminInfo.phone || 
+                serial !== APP_STATE.adminInfo.serial) {
+                showError("Invalid credentials. Access denied. Only Olawale Abdul-ganiyu can login.");
+                console.log('Login failed: Invalid credentials');
+                return;
+            }
+            
+            // Successful login
+            APP_STATE.isAdmin = true;
+            loginPage.classList.add('hidden');
+            adminDashboard.classList.remove('hidden');
+            
+            // Update admin display
+            const adminBvnDisplay = document.getElementById('admin-bvn-display');
+            if (adminBvnDisplay) {
+                adminBvnDisplay.textContent = `BVN: ${bvn}`;
+            }
+            
+            // Add to network sessions
+            addNetworkSession('Admin Login', 'Owner Network', 'Olawale Abdul-ganiyu');
+            
+            updateDashboard();
+            logTerminal(`[AUTH] Admin login successful: ${APP_STATE.adminInfo.name}`);
+            logTerminal(`[SECURITY] Owner verified: +2349030277275`);
+            logTerminal(`[SYSTEM] Dashboard initialized`);
+            console.log('Login successful');
+        }
+
+        // Logout Handler
+        function logout() {
+            APP_STATE.isAdmin = false;
+            adminDashboard.classList.add('hidden');
+            loginPage.classList.remove('hidden');
+            if (loginForm) {
+                loginForm.reset();
+            }
+            logTerminal(`[AUTH] Admin logged out`);
+            console.log('Logout successful');
+        }
+
+        // Show Error
+        function showError(message) {
+            if (loginError) {
+                loginError.textContent = message;
+                loginError.style.display = 'block';
+                setTimeout(() => {
+                    loginError.style.display = 'none';
+                }, 5000);
+            }
+            console.error(message);
+        }
+
+        // Show Section
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.dashboard-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            // Update nav menu
+            const navItems = document.querySelectorAll('.nav-menu a');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Find and activate the clicked nav item
+            if (event && event.target && event.target.closest('a')) {
+                event.target.closest('a').classList.add('active');
+            }
+        }
+
+        // Update Dashboard
+        function updateDashboard() {
+            // Update stats
+            updateStats();
+            
+            // Update customers list
+            updateCustomersList();
+            
+            // Update transactions list
+            updateTransactionsList();
+            
+            // Update balances
+            updateBalancesDisplay();
+            
+            // Update crypto info
+            updateCryptoDisplay();
+            
+            // Update mining stats
+            updateMiningStats();
+            
+            // Update trades display
+            updateTradesDisplay();
+        }
+
+        // Update Stats
+        function updateStats() {
+            const totalCustomers = document.getElementById('total-customers');
+            const totalBalance = document.getElementById('total-balance');
+            const activeTradesEl = document.getElementById('active-trades');
+            const dailyProfit = document.getElementById('daily-profit');
+            
+            if (totalCustomers) {
+                totalCustomers.textContent = APP_STATE.customers.length;
+            }
+            
+            if (totalBalance) {
+                totalBalance.textContent = formatCurrency(APP_STATE.balances.total);
+            }
+            
+            if (activeTradesEl) {
+                activeTradesEl.textContent = APP_STATE.activeTrades.length;
+            }
+            
+            if (dailyProfit) {
+                dailyProfit.textContent = formatCurrency(APP_STATE.balances.profit);
+            }
+        }
+
+        // Create Customer
+        function createCustomer(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('customer-name').value;
+            const email = document.getElementById('customer-email').value;
+            const phone = document.getElementById('customer-phone').value;
+            const bvn = document.getElementById('customer-bvn').value;
+            const nin = document.getElementById('customer-nin').value;
+            const initialBalance = parseFloat(document.getElementById('initial-balance').value) || 0;
+            
+            // Generate account number (10 digits)
+            const accountNumber = generateAccountNumber();
+            
+            // Generate serial number (AG + 8 digits)
+            const serialNumber = 'AG' + generateSerialNumber();
+            
+            const newCustomer = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                phone: phone,
+                bvn: bvn,
+                nin: nin,
+                accountNumber: accountNumber,
+                serialNumber: serialNumber,
+                balance: initialBalance,
+                status: initialBalance > 0 ? 'active' : 'pending',
+                createdAt: new Date().toISOString(),
+                lastSync: null
+            };
+            
+            APP_STATE.customers.push(newCustomer);
+            APP_STATE.balances.total += initialBalance;
+            
+            // Add transaction record
+            addTransaction({
+                type: 'Account Creation',
+                from: 'Admin',
+                to: name,
+                amount: initialBalance,
+                status: 'completed'
+            });
+            
+            // Save data
+            saveData();
+            
+            // Update display
+            updateCustomersList();
+            updateDashboard();
+            
+            // Clear form
+            document.getElementById('create-customer-form').reset();
+            
+            // Show success message
+            alert(`Customer created successfully!\n\nAccount Number: ${accountNumber}\nSerial Number: ${serialNumber}\n\nPlease share these credentials with the customer.`);
+            
+            logTerminal(`[CUSTOMER] New customer created: ${name} - Account: ${accountNumber}`);
+        }
+
+        // Generate Account Number
+        function generateAccountNumber() {
+            return Math.floor(1000000000 + Math.random() * 9000000000).toString();
+        }
+
+        // Generate Serial Number
+        function generateSerialNumber() {
+            return Math.floor(10000000 + Math.random() * 90000000).toString();
+        }
+
+        // Update Customers List
+        function updateCustomersList() {
+            const tableBody = document.getElementById('customers-table-body');
+            if (!tableBody) return;
+            
+            tableBody.innerHTML = '';
+            
+            APP_STATE.customers.forEach(customer => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${customer.accountNumber}</td>
+                    <td>${customer.name}</td>
+                    <td>${customer.email}</td>
+                    <td>${customer.phone}</td>
+                    <td>${formatCurrency(customer.balance)}</td>
+                    <td><span class="status-badge ${customer.status}">${customer.status}</span></td>
+                    <td>
+                        <button class="btn-success" onclick="adjustBalance('${customer.accountNumber}', 'credit')">+</button>
+                        <button class="btn-danger" onclick="adjustBalance('${customer.accountNumber}', 'debit')">-</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Update Transactions List
+        function updateTransactionsList() {
+            const tableBody = document.getElementById('transactions-table-body');
+            if (!tableBody) return;
+            
+            tableBody.innerHTML = '';
+            
+            const recentTransactions = APP_STATE.transactions.slice(-10).reverse();
+            
+            recentTransactions.forEach(transaction => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${transaction.type}</td>
+                    <td>${transaction.from}</td>
+                    <td>${transaction.to}</td>
+                    <td>${formatCurrency(transaction.amount)}</td>
+                    <td>${new Date(transaction.timestamp).toLocaleString()}</td>
+                    <td><span class="status-badge ${transaction.status}">${transaction.status}</span></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Update Balances Display
+        function updateBalancesDisplay() {
+            const balances = {
+                usd: document.getElementById('balance-usd'),
+                ngn: document.getElementById('balance-ngn'),
+                eur: document.getElementById('balance-eur'),
+                gbp: document.getElementById('balance-gbp'),
+                chf: document.getElementById('balance-chf')
+            };
+            
+            if (balances.usd) balances.usd.textContent = formatCurrency(APP_STATE.balances.usd);
+            if (balances.ngn) balances.ngn.textContent = formatCurrency(APP_STATE.balances.ngn);
+            if (balances.eur) balances.eur.textContent = formatCurrency(APP_STATE.balances.eur);
+            if (balances.gbp) balances.gbp.textContent = formatCurrency(APP_STATE.balances.gbp);
+            if (balances.chf) balances.chf.textContent = formatCurrency(APP_STATE.balances.chf);
+        }
+
+        // Update Crypto Display
+        function updateCryptoDisplay() {
+            const bitcoinBalance = document.getElementById('bitcoin-balance');
+            const pilgrimCoins = document.getElementById('pilgrim-coins');
+            const shares = document.getElementById('shares');
+            const bitcoinValue = document.getElementById('bitcoin-value');
+            const pilgrimValue = document.getElementById('pilgrim-value');
+            const sharesValue = document.getElementById('shares-value');
+            
+            if (bitcoinBalance) bitcoinBalance.textContent = `${APP_STATE.balances.bitcoin.toFixed(8)} BTC`;
+            if (pilgrimCoins) pilgrimCoins.textContent = `${APP_STATE.balances.pilgrimCoins.toFixed(2)} PLC`;
+            if (shares) shares.textContent = `${APP_STATE.balances.shares.toFixed(2)} GPS`;
+            
+            const btcValue = APP_STATE.balances.bitcoin * CRYPTO_PRICES.bitcoin;
+            const plcValue = APP_STATE.balances.pilgrimCoins * CRYPTO_PRICES.pilgrimCoin;
+            const gpsValue = APP_STATE.balances.shares * CRYPTO_PRICES.share;
+            
+            if (bitcoinValue) bitcoinValue.textContent = formatCurrency(btcValue);
+            if (pilgrimValue) pilgrimValue.textContent = formatCurrency(plcValue);
+            if (sharesValue) sharesValue.textContent = formatCurrency(gpsValue);
+        }
+
+        // Update Mining Stats
+        function updateMiningStats() {
+            const minedToday = document.getElementById('mined-today');
+            const totalMined = document.getElementById('total-mined');
+            
+            if (minedToday) minedToday.textContent = APP_STATE.minedToday;
+            if (totalMined) totalMined.textContent = APP_STATE.totalMined;
+        }
+
+        // Update Trades Display
+        function updateTradesDisplay() {
+            const activeTradesCount = document.getElementById('active-trades-count');
+            const activeTradesBody = document.getElementById('active-trades-body');
+            
+            if (activeTradesCount) {
+                activeTradesCount.textContent = APP_STATE.activeTrades.length;
+            }
+            
+            if (activeTradesBody) {
+                activeTradesBody.innerHTML = '';
+                
+                if (APP_STATE.activeTrades.length === 0) {
+                    activeTradesBody.innerHTML = '<tr><td colspan="7" style="text-align: center;">No active trades</td></tr>';
+                    return;
+                }
+                
+                APP_STATE.activeTrades.slice(-10).reverse().forEach(trade => {
+                    const row = document.createElement('tr');
+                    const profitClass = trade.profit >= 0 ? 'text-success' : 'text-danger';
+                    row.innerHTML = `
+                        <td>${trade.pair}</td>
+                        <td><span class="status-badge ${trade.action === 'BUY' ? 'active' : 'pending'}">${trade.action}</span></td>
+                        <td>${trade.lots.toFixed(2)}</td>
+                        <td>${trade.entryPrice.toFixed(5)}</td>
+                        <td>${trade.currentPrice.toFixed(5)}</td>
+                        <td style="color: ${trade.profit >= 0 ? '#27ae60' : '#e74c3c'}">${formatCurrency(trade.profit)}</td>
+                        <td><span class="status-badge ${trade.status}">${trade.status}</span></td>
+                    `;
+                    activeTradesBody.appendChild(row);
+                });
+            }
+        }
+
+        // Handle Send Money
+        function handleSendMoney(e) {
+            e.preventDefault();
+            
+            const fromAccount = document.getElementById('send-from-account').value;
+            const toAccount = document.getElementById('send-to-account').value;
+            const amount = parseFloat(document.getElementById('send-amount').value);
+            const remark = document.getElementById('send-remark').value;
+            
+            if (amount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            // Find accounts
+            const fromCustomer = APP_STATE.customers.find(c => c.accountNumber === fromAccount);
+            const toCustomer = APP_STATE.customers.find(c => c.accountNumber === toAccount);
+            
+            if (!fromCustomer) {
+                alert('From account not found');
+                return;
+            }
+            
+            if (!toCustomer) {
+                alert('To account not found');
+                return;
+            }
+            
+            if (fromCustomer.balance < amount) {
+                alert('Insufficient balance in from account');
+                return;
+            }
+            
+            // Calculate fee (1%)
+            const fee = amount * 0.01;
+            const transferAmount = amount - fee;
+            
+            // Process transfer
+            fromCustomer.balance -= amount;
+            toCustomer.balance += transferAmount;
+            
+            // Add transaction records
+            addTransaction({
+                type: 'Transfer Out',
+                from: fromCustomer.name,
+                to: toCustomer.name,
+                amount: amount,
+                fee: fee,
+                remark: remark,
+                status: 'completed'
+            });
+            
+            addTransaction({
+                type: 'Transfer In',
+                from: fromCustomer.name,
+                to: toCustomer.name,
+                amount: transferAmount,
+                fee: fee,
+                remark: remark,
+                status: 'completed'
+            });
+            
+            // Save and update
+            saveData();
+            updateDashboard();
+            
+            // Clear form
+            document.getElementById('send-money-form').reset();
+            
+            alert(`Transfer successful!\n\nFrom: ${fromCustomer.name}\nTo: ${toCustomer.name}\nAmount: ${formatCurrency(amount)}\nFee: ${formatCurrency(fee)}\nReceived: ${formatCurrency(transferAmount)}`);
+            
+            logTerminal(`[TRANSFER] ${formatCurrency(amount)} sent from ${fromCustomer.name} to ${toCustomer.name}`);
+        }
+
+        // Handle Credit
+        function handleCredit(e) {
+            e.preventDefault();
+            
+            const accountNumber = document.getElementById('credit-account-number').value;
+            const amount = parseFloat(document.getElementById('credit-amount').value);
+            const remark = document.getElementById('credit-remark').value;
+            
+            if (amount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            const customer = APP_STATE.customers.find(c => c.accountNumber === accountNumber);
+            
+            if (!customer) {
+                alert('Account not found');
+                return;
+            }
+            
+            // Process credit
+            customer.balance += amount;
+            APP_STATE.balances.total += amount;
+            
+            // Add transaction
+            addTransaction({
+                type: 'Credit',
+                from: 'Admin',
+                to: customer.name,
+                amount: amount,
+                remark: remark,
+                status: 'completed'
+            });
+            
+            // Save and update
+            saveData();
+            updateDashboard();
+            
+            // Clear form
+            document.getElementById('credit-form').reset();
+            
+            alert(`Account credited successfully!\n\nAccount: ${customer.name}\nAmount: ${formatCurrency(amount)}\nNew Balance: ${formatCurrency(customer.balance)}`);
+            
+            logTerminal(`[CREDIT] ${formatCurrency(amount)} credited to ${customer.name}`);
+        }
+
+        // Handle Debit
+        function handleDebit(e) {
+            e.preventDefault();
+            
+            const accountNumber = document.getElementById('debit-account-number').value;
+            const amount = parseFloat(document.getElementById('debit-amount').value);
+            const remark = document.getElementById('debit-remark').value;
+            
+            if (amount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            const customer = APP_STATE.customers.find(c => c.accountNumber === accountNumber);
+            
+            if (!customer) {
+                alert('Account not found');
+                return;
+            }
+            
+            if (customer.balance < amount) {
+                alert('Insufficient balance');
+                return;
+            }
+            
+            // Process debit
+            customer.balance -= amount;
+            APP_STATE.balances.total -= amount;
+            
+            // Add transaction
+            addTransaction({
+                type: 'Debit',
+                from: customer.name,
+                to: 'Admin',
+                amount: amount,
+                remark: remark,
+                status: 'completed'
+            });
+            
+            // Save and update
+            saveData();
+            updateDashboard();
+            
+            // Clear form
+            document.getElementById('debit-form').reset();
+            
+            alert(`Account debited successfully!\n\nAccount: ${customer.name}\nAmount: ${formatCurrency(amount)}\nNew Balance: ${formatCurrency(customer.balance)}`);
+            
+            logTerminal(`[DEBIT] ${formatCurrency(amount)} debited from ${customer.name}`);
+        }
+
+        // Handle BTC to PLC Conversion
+        function handleBtcToPlc(e) {
+            e.preventDefault();
+            
+            const btcAmount = parseFloat(document.getElementById('btc-to-plc-amount').value);
+            
+            if (btcAmount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            if (APP_STATE.balances.bitcoin < btcAmount) {
+                alert('Insufficient Bitcoin balance');
+                return;
+            }
+            
+            // Calculate PLC amount
+            const btcValue = btcAmount * CRYPTO_PRICES.bitcoin;
+            const plcAmount = btcValue / CRYPTO_PRICES.pilgrimCoin;
+            
+            // Process conversion
+            APP_STATE.balances.bitcoin -= btcAmount;
+            APP_STATE.balances.pilgrimCoins += plcAmount;
+            
+            // Add transaction
+            addTransaction({
+                type: 'Crypto Trade',
+                from: `${btcAmount} BTC`,
+                to: `${plcAmount.toFixed(2)} PLC`,
+                amount: btcValue,
+                status: 'completed'
+            });
+            
+            // Save and update
+            saveData();
+            updateDashboard();
+            updateCryptoDisplay();
+            
+            // Update result display
+            const resultDisplay = document.getElementById('btc-to-plc-result');
+            if (resultDisplay) {
+                resultDisplay.innerHTML = `
+                    <p>Converting: <span style="color: #f39c12;">${btcAmount} BTC</span></p>
+                    <p>Bitcoin Price: $${CRYPTO_PRICES.bitcoin.toLocaleString()}</p>
+                    <p>Pilgrim Coin Price: $${CRYPTO_PRICES.pilgrimCoin.toFixed(2)}</p>
+                    <p>You will receive: <span class="highlight">${plcAmount.toFixed(2)} PLC</span></p>
+                `;
+            }
+            
+            document.getElementById('btc-to-plc-form').reset();
+            
+            logTerminal(`[CRYPTO] Converted ${btcAmount} BTC to ${plcAmount.toFixed(2)} PLC`);
+        }
+
+        // Handle PLC to BTC Conversion
+        function handlePlcToBtc(e) {
+            e.preventDefault();
+            
+            const plcAmount = parseFloat(document.getElementById('plc-to-btc-amount').value);
+            
+            if (plcAmount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            if (APP_STATE.balances.pilgrimCoins < plcAmount) {
+                alert('Insufficient Pilgrim Coin balance');
+                return;
+            }
+            
+            // Calculate BTC amount
+            const plcValue = plcAmount * CRYPTO_PRICES.pilgrimCoin;
+            const btcAmount = plcValue / CRYPTO_PRICES.bitcoin;
+            
+            // Process conversion
+            APP_STATE.balances.pilgrimCoins -= plcAmount;
+            APP_STATE.balances.bitcoin += btcAmount;
+            
+            // Add transaction
+            addTransaction({
+                type: 'Crypto Trade',
+                from: `${plcAmount} PLC`,
+                to: `${btcAmount.toFixed(8)} BTC`,
+                amount: plcValue,
+                status: 'completed'
+            });
+            
+            // Save and update
+            saveData();
+            updateDashboard();
+            updateCryptoDisplay();
+            
+            // Update result display
+            const resultDisplay = document.getElementById('plc-to-btc-result');
+            if (resultDisplay) {
+                resultDisplay.innerHTML = `
+                    <p>Converting: <span style="color: #f39c12;">${plcAmount} PLC</span></p>
+                    <p>Pilgrim Coin Price: $${CRYPTO_PRICES.pilgrimCoin.toFixed(2)}</p>
+                    <p>Bitcoin Price: $${CRYPTO_PRICES.bitcoin.toLocaleString()}</p>
+                    <p>You will receive: <span class="highlight">${btcAmount.toFixed(8)} BTC</span></p>
+                `;
+            }
+            
+            document.getElementById('plc-to-btc-form').reset();
+            
+            logTerminal(`[CRYPTO] Converted ${plcAmount} PLC to ${btcAmount.toFixed(8)} BTC`);
+        }
+
+        // Add Transaction
+        function addTransaction(transaction) {
+            APP_STATE.transactions.push({
+                ...transaction,
+                id: Date.now(),
+                timestamp: new Date().toISOString()
+            });
+        }
+
+        // Format Currency
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD'
+            }).format(amount);
+        }
+
+        // Start Mining
+        function startMining() {
+            APP_STATE.miningActive = true;
+            logTerminal('[MINING] Wallet mining started');
+            
+            const miningInterval = setInterval(() => {
+                if (!APP_STATE.miningActive) {
+                    clearInterval(miningInterval);
+                    return;
+                }
+                
+                // Mine 50 PLC per minute
+                const minedAmount = 50;
+                const minedValue = minedAmount * CRYPTO_PRICES.pilgrimCoin;
+                
+                APP_STATE.balances.pilgrimCoins += minedAmount;
+                APP_STATE.minedToday += minedAmount;
+                APP_STATE.totalMined += minedAmount;
+                
+                logTerminal(`[MINING] Mined ${minedAmount} PLC ($${minedValue.toFixed(2)}) - Total today: ${APP_STATE.minedToday} PLC`);
+                
+                updateDashboard();
+                updateCryptoDisplay();
+            }, 60000); // Every minute
+        }
+
+        // Stop Mining
+        function stopMining() {
+            APP_STATE.miningActive = false;
+            logTerminal('[MINING] Wallet mining stopped');
+        }
+
+        // Start Auto Trading
+        function startAutoTrading() {
+            logTerminal('[FOREX] Auto-trading system activated');
+            
+            setInterval(() => {
+                if (!APP_STATE.autoTrading) return;
+                
+                // Execute auto trade
+                executeAutoTrade();
+            }, 6000); // Every 6 seconds
+        }
+
+        // Execute Auto Trade
+        function executeAutoTrade() {
+            // Random trade parameters
+            const pairs = ['EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD', 'USD/CAD', 'USD/CHF', 'NZD/USD', 'EUR/GBP', 'EUR/JPY', 'GBP/JPY'];
+            const actions = ['BUY', 'SELL'];
+            const pair = pairs[Math.floor(Math.random() * pairs.length)];
+            const action = actions[Math.floor(Math.random() * actions.length)];
+            const lots = (Math.random() * 10000).toFixed(2); // Up to 10000 lots
+            const entryPrice = (Math.random() * 2 + 0.8).toFixed(5);
+            const profit = (Math.random() * 1000 - 100).toFixed(2);
+            
+            const trade = {
+                id: Date.now(),
+                pair: pair,
+                action: action,
+                lots: parseFloat(lots),
+                entryPrice: parseFloat(entryPrice),
+                currentPrice: parseFloat(entryPrice),
+                profit: parseFloat(profit),
+                timestamp: new Date().toISOString(),
+                status: 'active'
+            };
+            
+            APP_STATE.activeTrades.push(trade);
+            
+            // Add profit to balance if positive
+            if (parseFloat(profit) > 0) {
+                APP_STATE.balances.profit += parseFloat(profit);
+            }
+            
+            logTerminal(`[AUTO TRADE] ${action} ${lots} ${pair} @ ${entryPrice} | Profit: $${profit}`);
+            
+            updateDashboard();
+        }
+
+        // Start Network Monitoring
+        function startNetworkMonitoring() {
+            logTerminal('[NETWORK] Network monitoring system activated');
+        }
+
+        // Add Network Session
+        function addNetworkSession(type, network, user) {
+            APP_STATE.networkSessions.push({
+                type: type,
+                network: network,
+                user: user,
+                timestamp: new Date().toISOString()
+            });
+            logTerminal(`[NETWORK] New session: ${type} by ${user} from ${network}`);
+        }
+
+        // Log to Terminal
+        function logTerminal(message) {
+            const terminalOutput = document.getElementById('terminal-output');
+            if (!terminalOutput) return;
+            
+            const timestamp = new Date().toLocaleString();
+            const line = document.createElement('div');
+            line.className = 'terminal-line';
+            line.innerHTML = `<span class="timestamp">[${timestamp}]</span> ${message}`;
+            terminalOutput.appendChild(line);
+            
+            // Auto scroll to bottom
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        }
+
+        // Handle Terminal Command
+        function handleTerminalCommand(e) {
+            if (e.key === 'Enter') {
+                const input = document.getElementById('terminal-input');
+                const command = input.value.trim().toLowerCase();
+                
+                input.value = '';
+                
+                switch(command) {
+                    case 'status':
+                        logTerminal('[SYSTEM] System status: Online');
+                        logTerminal('[SYSTEM] Admin: ' + APP_STATE.adminInfo.name);
+                        logTerminal('[SYSTEM] Customers: ' + APP_STATE.customers.length);
+                        logTerminal('[SYSTEM] Total Balance: ' + formatCurrency(APP_STATE.balances.total));
+                        break;
+                    case 'customers':
+                        logTerminal('[CUSTOMERS] Total customers: ' + APP_STATE.customers.length);
+                        APP_STATE.customers.forEach(c => {
+                            logTerminal(`[CUSTOMER] ${c.name} - ${c.accountNumber} - ${formatCurrency(c.balance)}`);
+                        });
+                        break;
+                    case 'transactions':
+                        logTerminal('[TRANSACTIONS] Total transactions: ' + APP_STATE.transactions.length);
+                        break;
+                    case 'clear':
+                        const terminalOutput = document.getElementById('terminal-output');
+                        if (terminalOutput) {
+                            terminalOutput.innerHTML = '';
+                        }
+                        break;
+                    case 'help':
+                        logTerminal('[HELP] Available commands: status, customers, transactions, clear, help');
+                        break;
+                    default:
+                        logTerminal('[ERROR] Unknown command: ' + command);
+                        logTerminal('[HELP] Type "help" for available commands');
+                }
+            }
+        }
+
+        // Save Data
+        function saveData() {
+            localStorage.setItem('globalPilgrimBankData', JSON.stringify(APP_STATE));
+        }
+
+        // Load Saved Data
+        function loadSavedData() {
+            const savedData = localStorage.getItem('globalPilgrimBankData');
+            if (savedData) {
+                const parsed = JSON.parse(savedData);
+                Object.assign(APP_STATE, parsed);
+                logTerminal('[SYSTEM] Data loaded successfully');
+            } else {
+                // Create demo customer
+                const demoCustomer = {
+                    id: 1,
+                    name: 'Demo Customer',
+                    email: 'demo@pilgrim.com',
+                    phone: '+2348000000000',
+                    bvn: '12345678901',
+                    nin: '12345678901',
+                    accountNumber: '1234567890',
+                    serialNumber: 'AG9512345678',
+                    balance: 5000,
+                    status: 'active',
+                    createdAt: new Date().toISOString(),
+                    lastSync: null
+                };
+                
+                APP_STATE.customers.push(demoCustomer);
+                APP_STATE.balances.total = 5000;
+                APP_STATE.balances.usd = 5000;
+                
+                // Give some demo crypto balances
+                APP_STATE.balances.bitcoin = 0.5; // Add demo Bitcoin
+                APP_STATE.balances.pilgrimCoins = 1000; // Add demo PLC
+                
+                saveData();
+                logTerminal('[SYSTEM] Demo data initialized');
+            }
+        }
+    </script>
+</body>
+</html>
